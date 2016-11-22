@@ -3,12 +3,13 @@
 }
 
 <link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/normalize.min.css">
-<link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/main.css">
+<link rel="stylesheet" href="http://twitter.github.io/typeahead.js/css/examples.css">
 
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
 <script src="http://twitter.github.io/typeahead.js/js/jquery-1.10.2.min.js"></script>
 <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 
@@ -100,7 +101,10 @@
         var usgs = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: '/home/suggest?q=%QUERY&fuzzy=true'
+            remote: {
+                url: '/home/suggest?q=%QUERY&fuzzy=true',
+                wildcard: '%QUERY'
+            }
         });
 
         usgs.initialize();
